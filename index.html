@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tesco Customer Signal AI — Demo Prototype</title>
+<style>
+:root{--green:#007a3d;--dark:#153b2b;--mint:#e9f5ee;--red:#b42318;--amber:#a15c00;--ink:#1d2a24;--muted:#64736b;--line:#dce6df;--bg:#f5f8f6;--white:#fff}
+*{box-sizing:border-box} body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.45 Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+header{background:linear-gradient(115deg,#005a2d,#007a3d);color:white;padding:26px max(22px,calc((100vw - 1200px)/2));}
+.top{display:flex;justify-content:space-between;gap:16px;align-items:center;flex-wrap:wrap}
+.brand{font-size:13px;font-weight:800;letter-spacing:.13em;text-transform:uppercase;opacity:.9}
+h1{font-size:clamp(26px,4vw,38px);line-height:1.08;margin:10px 0 8px;letter-spacing:-.03em}
+header p{margin:0;max-width:760px;color:#e6f5eb}
+.pill{display:inline-flex;border:1px solid #ffffff7d;border-radius:99px;padding:7px 11px;font-size:12px;font-weight:700}
+main{max-width:1200px;margin:24px auto;padding:0 20px 36px}
+.notice{background:#fff9e9;border:1px solid #f1dca6;border-radius:12px;padding:12px 15px;color:#624900;margin-bottom:18px;font-size:13px}
+.grid{display:grid;grid-template-columns:1.05fr 1.4fr;gap:18px;align-items:start}
+.card{background:var(--white);border:1px solid var(--line);border-radius:16px;padding:19px;box-shadow:0 4px 18px #173a2910}
+.card h2{font-size:18px;margin:0 0 6px;letter-spacing:-.02em}
+.sub{font-size:13px;color:var(--muted);margin:0 0 15px}
+.controls{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0}
+select,button{font:inherit;border-radius:9px;padding:10px 12px;border:1px solid #cbd8cf;background:white;color:var(--ink)}
+button{cursor:pointer;font-weight:750}
+button.primary{background:var(--green);color:white;border-color:var(--green)}
+button.secondary{background:#f0f6f2}
+button:hover{filter:brightness(.97)}
+.metrics{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:16px 0}
+.metric{background:#f6faf7;border:1px solid var(--line);border-radius:12px;padding:12px}
+.metric .n{font-size:26px;font-weight:800;color:var(--dark);letter-spacing:-.04em}
+.metric .l{font-size:12px;color:var(--muted)}
+.feedback-list{display:flex;flex-direction:column;gap:9px;max-height:470px;overflow:auto;padding-right:3px}
+.feedback{border:1px solid var(--line);border-radius:10px;padding:11px 12px;background:white}
+.feedback .meta{display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap;font-size:11px;color:var(--muted);margin-bottom:5px}
+.tag{display:inline-block;background:var(--mint);color:#075d32;padding:3px 7px;border-radius:99px;font-size:11px;font-weight:800}
+.feedback p{margin:0;font-size:13px}
+.issue{border:1px solid var(--line);border-radius:13px;padding:15px;margin-top:11px}
+.issue-head{display:flex;justify-content:space-between;gap:12px;align-items:flex-start}
+.issue h3{margin:0 0 5px;font-size:16px}
+.issue p{margin:7px 0;font-size:13px}
+.score{font-size:12px;font-weight:800;background:#e8f5ec;color:#075d32;border-radius:8px;padding:6px 8px;white-space:nowrap}
+.issue ul{padding-left:19px;margin:8px 0;font-size:13px}
+.evidence{background:#f7faf8;border-left:3px solid #70a989;padding:9px 11px;border-radius:0 8px 8px 0;font-size:12px;margin-top:8px}
+.actions{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:18px}
+.action-box{border:1px solid var(--line);border-radius:12px;padding:14px}
+.action-box h3{font-size:14px;margin:0 0 7px}
+.action-box p{font-size:13px;margin:0}
+textarea{width:100%;min-height:112px;border:1px solid #cbd8cf;border-radius:9px;padding:11px;font:13px/1.45 inherit;resize:vertical}
+.small{font-size:12px;color:var(--muted)}
+.status{display:inline-flex;gap:6px;align-items:center;font-size:12px;font-weight:750;color:var(--green)}
+.dot{height:8px;width:8px;border-radius:50%;background:#2ca566;display:inline-block}
+footer{margin-top:18px;color:var(--muted);font-size:12px;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+@media(max-width:850px){.grid{grid-template-columns:1fr}.actions{grid-template-columns:1fr}.metrics{grid-template-columns:repeat(3,1fr)}}
+</style>
+</head>
+<body>
+<header>
+  <div class="top">
+    <div class="brand">Customer Experience Intelligence · Concept Demo</div>
+    <span class="pill">Fictional Tesco scenario</span>
+  </div>
+  <h1>Customer Signal AI</h1>
+  <p>Turn fragmented shopper feedback into evidence-led priorities and a clear next action for customer care and grocery operations.</p>
+</header>
+<main>
+  <div class="notice"><strong>Prototype disclosure:</strong> This is an independent, self-contained demonstration using invented feedback. Analysis is rule-based to simulate an AI workflow; it does not call a live model, connect to Tesco systems, or represent actual Tesco customer data or Sprinklr functionality.</div>
+  <div class="grid">
+    <section class="card">
+      <h2>1 · Shopper feedback sample</h2>
+      <p class="sub">A small, fictional dataset across the online grocery journey.</p>
+      <div class="metrics">
+        <div class="metric"><div class="n" id="totalMetric">18</div><div class="l">Feedback items</div></div>
+        <div class="metric"><div class="n">4</div><div class="l">Example themes</div></div>
+        <div class="metric"><div class="n">3</div><div class="l">Channels</div></div>
+      </div>
+      <div class="controls">
+        <select id="themeFilter" aria-label="Filter by theme">
+          <option value="all">All themes</option><option value="Substitutions">Substitutions</option><option value="Delivery slots">Delivery slots</option><option value="Missing or damaged items">Missing or damaged items</option><option value="Refunds and support">Refunds and support</option>
+        </select>
+        <select id="channelFilter" aria-label="Filter by channel">
+          <option value="all">All channels</option><option value="App review">App review</option><option value="Support contact">Support contact</option><option value="Survey">Survey</option>
+        </select>
+      </div>
+      <div class="feedback-list" id="feedbackList"></div>
+      <p class="small" style="margin-top:12px">Facilitator cue: ask the panel what additional context they would request before making a business recommendation.</p>
+    </section>
+    <section class="card">
+      <div style="display:flex;justify-content:space-between;gap:12px;align-items:start;flex-wrap:wrap">
+        <div><h2>2 · Insight and prioritisation</h2><p class="sub">Identify recurring themes, inspect evidence, then decide what to investigate.</p></div>
+        <span class="status"><span class="dot"></span> Demo workspace</span>
+      </div>
+      <button class="primary" id="analyzeBtn">Analyse feedback</button>
+      <button class="secondary" id="resetBtn">Reset view</button>
+      <div id="results" aria-live="polite">
+        <div class="issue" style="background:#f7faf8"><h3>Ready to analyse</h3><p>Select a filter if useful, then run the analysis to see prioritised themes, evidence and suggested actions.</p></div>
+      </div>
+      <div class="actions">
+        <div class="action-box">
+          <h3>Suggested next step</h3>
+          <p id="nextStep">Start with a focused issue, validate it with the business owner, and agree the evidence needed.</p>
+        </div>
+        <div class="action-box">
+          <h3>Human review · hand-off draft</h3>
+          <textarea id="handoff">Team: Online Grocery Operations
+Purpose: Validate the highest-priority feedback theme.
+Before action: Check order-level context, operational data and whether the pattern is concentrated by region, time or fulfilment method.
+Decision owner: Relevant operations lead.</textarea>
+          <div class="controls"><button class="secondary" id="copyBtn">Copy hand-off</button></div>
+          <div class="small" id="copyStatus" aria-live="polite">Review and edit before using.</div>
+        </div>
+      </div>
+      <div class="issue" style="margin-top:14px;background:#fbfdfb">
+        <h3 style="font-size:14px;margin:0 0 6px">3 · How we would validate this with Tesco</h3>
+        <ul style="margin:0;padding-left:19px;font-size:13px">
+          <li>Agree one journey, an accountable business owner and baseline measures.</li>
+          <li>Check themes against source records and operational context.</li>
+          <li>Measure investigation time, resolution outcomes, repeat contacts and colleague adoption.</li>
+          <li>Keep consequential customer or operational decisions with a human.</li>
+        </ul>
+      </div>
+    </section>
+  </div>
+  <footer>
+    <span>Customer Signal AI · Independent concept prototype</span>
+    <span>Fictional data · No external connections · Human-in-the-loop design</span>
+  </footer>
+</main>
+<script>
+const items = [
+ {id:1,theme:"Substitutions",channel:"App review",date:"Mon",text:"Several items were substituted with products that were much more expensive than the ones I selected.",sentiment:"Negative"},
+ {id:2,theme:"Substitutions",channel:"Survey",date:"Mon",text:"I would prefer to approve or reject substitutions before the order is packed.",sentiment:"Negative"},
+ {id:3,theme:"Substitutions",channel:"Support contact",date:"Tue",text:"The alternative for my dietary product was not suitable and I could not change it in time.",sentiment:"Negative"},
+ {id:4,theme:"Substitutions",channel:"App review",date:"Tue",text:"The app says I can set preferences, but I still got a substitute I would not have chosen.",sentiment:"Negative"},
+ {id:5,theme:"Substitutions",channel:"Survey",date:"Wed",text:"Some replacements are fine, but I need clearer information about size and price.",sentiment:"Mixed"},
+ {id:6,theme:"Delivery slots",channel:"Support contact",date:"Mon",text:"My delivery slot changed and I only found out after I had arranged to be home.",sentiment:"Negative"},
+ {id:7,theme:"Delivery slots",channel:"App review",date:"Mon",text:"There were no convenient slots available when I checked out this evening.",sentiment:"Negative"},
+ {id:8,theme:"Delivery slots",channel:"Survey",date:"Tue",text:"I need a more reliable indication of when the driver will arrive.",sentiment:"Negative"},
+ {id:9,theme:"Delivery slots",channel:"Support contact",date:"Wed",text:"The order arrived outside the expected window and I had to contact support.",sentiment:"Negative"},
+ {id:10,theme:"Delivery slots",channel:"App review",date:"Thu",text:"Tracking was useful, but the estimated arrival time changed several times.",sentiment:"Mixed"},
+ {id:11,theme:"Missing or damaged items",channel:"Support contact",date:"Mon",text:"One item was missing from the bags and I had to report it separately.",sentiment:"Negative"},
+ {id:12,theme:"Missing or damaged items",channel:"Survey",date:"Tue",text:"The fruit was damaged when the order arrived.",sentiment:"Negative"},
+ {id:13,theme:"Missing or damaged items",channel:"App review",date:"Wed",text:"The order was mostly good, but two products were missing and it was hard to report them.",sentiment:"Negative"},
+ {id:14,theme:"Missing or damaged items",channel:"Support contact",date:"Thu",text:"I could not tell whether the missing item had been refunded or was still being processed.",sentiment:"Negative"},
+ {id:15,theme:"Refunds and support",channel:"Support contact",date:"Tue",text:"I had to explain the same problem twice when I contacted support.",sentiment:"Negative"},
+ {id:16,theme:"Refunds and support",channel:"App review",date:"Wed",text:"It was not clear where to check the status of my refund.",sentiment:"Negative"},
+ {id:17,theme:"Refunds and support",channel:"Survey",date:"Thu",text:"The colleague was helpful, but I had to wait to get a clear answer.",sentiment:"Mixed"},
+ {id:18,theme:"Refunds and support",channel:"Support contact",date:"Fri",text:"I received a helpful response once I reached the right team.",sentiment:"Positive"}
+];
+const actions = {
+ "Substitutions":"Review substitution preference settings, product matching rules and how price/size differences are presented. Validate with grocery operations and digital product.",
+ "Delivery slots":"Compare planned versus actual delivery windows, slot availability and notification timing. Validate whether the pattern is concentrated by time, area or fulfilment method.",
+ "Missing or damaged items":"Review pick/pack accuracy, damage reporting and refund-status visibility. Separate fulfilment issues from communication or process issues.",
+ "Refunds and support":"Map the support journey and repeat-contact reasons. Check hand-off quality, refund-status clarity and whether the same issue is being logged consistently."
+};
+const descriptions = {
+ "Substitutions":"Feedback points to a mismatch between shopper preferences and replacement choices, with price, suitability and control recurring in the fictional sample.",
+ "Delivery slots":"Feedback points to uncertainty around slot availability, changes and arrival estimates.",
+ "Missing or damaged items":"Feedback points to order completeness/condition concerns and friction when reporting or tracking resolution.",
+ "Refunds and support":"Feedback points to repeat explanation, waiting and limited visibility of refund status."
+};
+const priority = {"Substitutions":1,"Delivery slots":2,"Missing or damaged items":3,"Refunds and support":4};
+function visibleItems(){
+ const t=document.getElementById("themeFilter").value,c=document.getElementById("channelFilter").value;
+ return items.filter(x=>(t==="all"||x.theme===t)&&(c==="all"||x.channel===c));
+}
+function renderFeedback(){
+ const list=visibleItems();document.getElementById("totalMetric").textContent=list.length;
+ document.getElementById("feedbackList").innerHTML=list.map(x=>`<div class="feedback"><div class="meta"><span>#${x.id} · ${x.date}</span><span>${x.channel}</span></div><p>${x.text}</p><div style="margin-top:7px"><span class="tag">${x.theme}</span></div></div>`).join("") || '<p class="small">No items match these filters.</p>';
+}
+function analyse(){
+ const list=visibleItems();
+ if(!list.length){document.getElementById("results").innerHTML='<div class="issue"><h3>No matching feedback</h3><p>Change the filters and try again.</p></div>';return;}
+ const groups={};list.forEach(x=>(groups[x.theme]??=[]).push(x));
+ const ranked=Object.entries(groups).map(([theme,rows])=>({theme,rows,neg:rows.filter(r=>r.sentiment==="Negative").length,channels:new Set(rows.map(r=>r.channel)).size})).sort((a,b)=>(b.rows.length*2+b.channels+a.neg)-(a.rows.length*2+a.channels+b.neg));
+ document.getElementById("results").innerHTML=ranked.map((g,i)=>`<div class="issue"><div class="issue-head"><div><h3>${i+1}. ${g.theme}</h3><p>${descriptions[g.theme]}</p></div><div class="score">${g.rows.length} signal${g.rows.length===1?"":"s"} · ${g.channels} channel${g.channels===1?"":"s"}</div></div><p><strong>Why it matters:</strong> Potential impact on shopper confidence and the effort required to resolve an issue; validate actual impact with Tesco data.</p><div class="evidence"><strong>Supporting evidence (fictional):</strong><br>${g.rows.slice(0,2).map(r=>"“"+r.text+"” ("+r.channel+")").join("<br>")}</div><p><strong>Suggested investigation:</strong> ${actions[g.theme]}</p></div>`).join("");
+ const top=ranked[0];
+ document.getElementById("nextStep").textContent=top?`Start with ${top.theme.toLowerCase()}: validate the sample signal with source records, establish operational impact, and confirm the accountable owner before recommending a change.`:"Review the filters and run the analysis.";
+ document.getElementById("handoff").value=`Team: ${top&&top.theme==="Delivery slots"?"Online Grocery Delivery Operations":top&&top.theme==="Substitutions"?"Online Grocery Operations / Digital Product":"Customer Care and Grocery Operations"}\nPurpose: Validate the recurring ${top?top.theme.toLowerCase():"customer feedback"} theme seen in the fictional sample.\nEvidence to check: Source comments, order/fulfilment context, timing, region and repeat-contact data where approved.\nQuestions: Is this pattern real in operational data? What is the customer and colleague impact? What is the smallest safe intervention to test?\nDecision owner: Relevant business lead. Human review required before action.`;
+}
+document.getElementById("themeFilter").addEventListener("change",renderFeedback);
+document.getElementById("channelFilter").addEventListener("change",renderFeedback);
+document.getElementById("analyzeBtn").addEventListener("click",analyse);
+document.getElementById("resetBtn").addEventListener("click",()=>{document.getElementById("themeFilter").value="all";document.getElementById("channelFilter").value="all";renderFeedback();document.getElementById("results").innerHTML='<div class="issue" style="background:#f7faf8"><h3>Ready to analyse</h3><p>Select a filter if useful, then run the analysis to see prioritised themes, evidence and suggested actions.</p></div>';document.getElementById("nextStep").textContent="Start with a focused issue, validate it with the business owner, and agree the evidence needed.";});
+document.getElementById("copyBtn").addEventListener("click",async()=>{const box=document.getElementById("handoff");box.select();try{await navigator.clipboard.writeText(box.value);document.getElementById("copyStatus").textContent="Copied. Review before using."; }catch(e){document.execCommand("copy");document.getElementById("copyStatus").textContent="Selected for copying. Review before using."; }});
+renderFeedback();
+</script>
+</body>
+</html>
