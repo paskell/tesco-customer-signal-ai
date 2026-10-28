@@ -1,68 +1,28 @@
-# Tesco Customer Signal AI — interview demo
+# Tesco Customer Signal AI — Tesco-inspired concept demo
 
-An independent, browser-based concept prototype for a fictional grocery-retail customer scenario. It demonstrates a possible workflow for turning shopper feedback into evidence-led themes, prioritised investigations, and a human-reviewed hand-off.
+## Run it
+Open `index.html` in a modern browser. It runs locally and does not require installation or an internet connection.
 
-## Live demo
+## What this version demonstrates
+- Tesco-inspired retail visual treatment using blue, restrained red accents, clear grocery-operations language and a five-stage Listen → Understand → Prioritise → Act → Measure journey
+- Fictional shopper feedback across three channels
+- Filtering by theme and channel
+- Repeat-theme analysis with visible supporting comments
+- Suggested investigations and an editable human-review hand-off draft
+- Validation, governance and KPI discussion
+- Responsive layout for a laptop or shared-screen panel conversation
 
-After publishing with GitHub Pages, the URL will be:
+## Important limitations
+This is an independent concept prototype. Tesco styling is illustrative and does not imply endorsement, affiliation, or production use. The dataset is invented, and the analysis is deterministic/rule-based to simulate an AI workflow. It does not call an LLM, connect to Tesco systems, use real customer information, or represent Sprinklr functionality. Be transparent about this in the panel.
 
-`https://YOUR-GITHUB-USERNAME.github.io/tesco-customer-signal-ai/`
+If asked how it would become production-ready, explain that you would validate the use case and data access, connect approved sources, use retrieval/grounding and structured outputs, evaluate quality against a human-reviewed test set, add role-based access and auditability, and keep consequential decisions human-approved.
 
-Replace `YOUR-GITHUB-USERNAME` with your GitHub username. The URL will work only after you create the repository and enable GitHub Pages.
+## Suggested 5-minute demo
+1. Frame the customer and operational problem (30 sec).
+2. Show the Listen → Understand → Prioritise → Act → Measure journey (20 sec).
+3. Filter the fictional feedback and run analysis (60 sec).
+4. Inspect the evidence and discuss what context is missing (60 sec).
+5. Edit/review the operational hand-off draft (60 sec).
+6. Explain validation, guardrails and KPIs (70 sec).
 
-## Run locally
-
-No build tools or dependencies are required.
-
-1. Download or clone this repository.
-2. Open `index.html` in a modern browser.
-
-## Publish as a public website with GitHub Pages
-
-1. Sign in to GitHub and create a **new public repository** named `tesco-customer-signal-ai`.
-2. Upload the contents of this folder to the repository root. Make sure `index.html` is at the root, not inside another nested folder.
-3. In the repository, open **Settings → Pages**.
-4. Under **Build and deployment**, select **Deploy from a branch**.
-5. Select branch `main` and folder `/ (root)`, then click **Save**.
-6. Wait for GitHub Pages to finish publishing. The site URL will appear on the Pages settings screen.
-
-GitHub's interface can change slightly; follow the current labels shown in repository Settings → Pages.
-
-## Demo flow (about five minutes)
-
-1. Frame the fictional grocery customer problem.
-2. Filter the sample feedback and run the analysis.
-3. Inspect the comments behind a theme.
-4. Review and edit the human hand-off draft.
-5. Discuss validation, governance and business KPIs.
-
-## Important limitations and interview transparency
-
-- All feedback is invented. It is not Tesco data and does not imply any claim about Tesco's actual performance.
-- This is an independent concept prototype, not a Sprinklr product demonstration.
-- The analysis uses deterministic rules to simulate an AI-assisted workflow. It does **not** call a live LLM or connect to Tesco systems.
-- The prototype makes no external network calls and requires no API keys.
-- Before a production build, validate the use case and access permissions; connect approved sources; ground generated insights in source records; evaluate against human-reviewed examples; and retain human approval for consequential decisions.
-
-## Suggested measures
-
-- Time to identify a recurring issue
-- Investigation and resolution time
-- Repeat contacts and customer outcomes
-- Evidence coverage and factual accuracy
-- Human correction / escalation rate
-- Adoption by customer-care and operations teams
-
-## Repository structure
-
-```text
-tesco-customer-signal-ai/
-├── index.html
-├── README.md
-├── LICENSE
-└── .nojekyll
-```
-
-## License
-
-The code in this repository is provided under the MIT License. The Tesco name is used only to describe a fictional interview scenario; this project is not affiliated with or endorsed by Tesco or Sprinklr.
+Suggested KPIs: time to identify a recurring issue, investigation time, time to resolution, repeat contacts, evidence accuracy, human correction rate, and adoption by target teams.

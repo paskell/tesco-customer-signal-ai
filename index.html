@@ -3,70 +3,46 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Tesco Customer Signal AI — Demo Prototype</title>
+<title>Tesco Customer Signal AI | Concept Demo</title>
 <style>
-:root{--green:#007a3d;--dark:#153b2b;--mint:#e9f5ee;--red:#b42318;--amber:#a15c00;--ink:#1d2a24;--muted:#64736b;--line:#dce6df;--bg:#f5f8f6;--white:#fff}
-*{box-sizing:border-box} body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.45 Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
-header{background:linear-gradient(115deg,#005a2d,#007a3d);color:white;padding:26px max(22px,calc((100vw - 1200px)/2));}
-.top{display:flex;justify-content:space-between;gap:16px;align-items:center;flex-wrap:wrap}
-.brand{font-size:13px;font-weight:800;letter-spacing:.13em;text-transform:uppercase;opacity:.9}
-h1{font-size:clamp(26px,4vw,38px);line-height:1.08;margin:10px 0 8px;letter-spacing:-.03em}
-header p{margin:0;max-width:760px;color:#e6f5eb}
-.pill{display:inline-flex;border:1px solid #ffffff7d;border-radius:99px;padding:7px 11px;font-size:12px;font-weight:700}
-main{max-width:1200px;margin:24px auto;padding:0 20px 36px}
-.notice{background:#fff9e9;border:1px solid #f1dca6;border-radius:12px;padding:12px 15px;color:#624900;margin-bottom:18px;font-size:13px}
-.grid{display:grid;grid-template-columns:1.05fr 1.4fr;gap:18px;align-items:start}
-.card{background:var(--white);border:1px solid var(--line);border-radius:16px;padding:19px;box-shadow:0 4px 18px #173a2910}
-.card h2{font-size:18px;margin:0 0 6px;letter-spacing:-.02em}
-.sub{font-size:13px;color:var(--muted);margin:0 0 15px}
-.controls{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0}
-select,button{font:inherit;border-radius:9px;padding:10px 12px;border:1px solid #cbd8cf;background:white;color:var(--ink)}
-button{cursor:pointer;font-weight:750}
-button.primary{background:var(--green);color:white;border-color:var(--green)}
-button.secondary{background:#f0f6f2}
-button:hover{filter:brightness(.97)}
-.metrics{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:16px 0}
-.metric{background:#f6faf7;border:1px solid var(--line);border-radius:12px;padding:12px}
-.metric .n{font-size:26px;font-weight:800;color:var(--dark);letter-spacing:-.04em}
-.metric .l{font-size:12px;color:var(--muted)}
-.feedback-list{display:flex;flex-direction:column;gap:9px;max-height:470px;overflow:auto;padding-right:3px}
-.feedback{border:1px solid var(--line);border-radius:10px;padding:11px 12px;background:white}
-.feedback .meta{display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap;font-size:11px;color:var(--muted);margin-bottom:5px}
-.tag{display:inline-block;background:var(--mint);color:#075d32;padding:3px 7px;border-radius:99px;font-size:11px;font-weight:800}
-.feedback p{margin:0;font-size:13px}
-.issue{border:1px solid var(--line);border-radius:13px;padding:15px;margin-top:11px}
-.issue-head{display:flex;justify-content:space-between;gap:12px;align-items:flex-start}
-.issue h3{margin:0 0 5px;font-size:16px}
-.issue p{margin:7px 0;font-size:13px}
-.score{font-size:12px;font-weight:800;background:#e8f5ec;color:#075d32;border-radius:8px;padding:6px 8px;white-space:nowrap}
-.issue ul{padding-left:19px;margin:8px 0;font-size:13px}
-.evidence{background:#f7faf8;border-left:3px solid #70a989;padding:9px 11px;border-radius:0 8px 8px 0;font-size:12px;margin-top:8px}
-.actions{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:18px}
-.action-box{border:1px solid var(--line);border-radius:12px;padding:14px}
-.action-box h3{font-size:14px;margin:0 0 7px}
-.action-box p{font-size:13px;margin:0}
-textarea{width:100%;min-height:112px;border:1px solid #cbd8cf;border-radius:9px;padding:11px;font:13px/1.45 inherit;resize:vertical}
-.small{font-size:12px;color:var(--muted)}
-.status{display:inline-flex;gap:6px;align-items:center;font-size:12px;font-weight:750;color:var(--green)}
-.dot{height:8px;width:8px;border-radius:50%;background:#2ca566;display:inline-block}
-footer{margin-top:18px;color:var(--muted);font-size:12px;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
-@media(max-width:850px){.grid{grid-template-columns:1fr}.actions{grid-template-columns:1fr}.metrics{grid-template-columns:repeat(3,1fr)}}
+:root{--tesco-blue:#00539f;--tesco-blue-dark:#003b71;--tesco-red:#e31837;--tesco-pale:#eaf3fb;--navy:#102b46;--ink:#182b3a;--muted:#607386;--line:#d8e2ec;--bg:#f3f6fa;--white:#fff;--green:#16834a;--green-pale:#e8f5ed;--amber:#8b5600;--amber-pale:#fff4dc;--red-pale:#fff0f1}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.5 Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+button,select,textarea{font:inherit}a{color:var(--tesco-blue)}
+.utility{background:var(--tesco-blue-dark);color:#eaf3ff;padding:7px max(20px,calc((100vw - 1240px)/2));font-size:11px;letter-spacing:.04em;display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap}
+.sitebar{background:#fff;border-bottom:1px solid var(--line);padding:15px max(20px,calc((100vw - 1240px)/2));display:flex;align-items:center;justify-content:space-between;gap:18px;flex-wrap:wrap}
+.brandlockup{display:flex;align-items:center;gap:13px}.tesco-word{font-size:29px;line-height:1;font-weight:900;letter-spacing:-.08em;color:var(--tesco-blue);position:relative;padding-bottom:5px}.tesco-word:after{content:"";position:absolute;left:0;right:0;bottom:0;height:4px;background:var(--tesco-red);border-radius:2px}.brand-divider{height:31px;width:1px;background:var(--line)}.product-name{font-size:13px;font-weight:800;color:var(--navy)}.product-caption{font-size:11px;color:var(--muted);margin-top:2px}.navlinks{display:flex;gap:20px;align-items:center;color:var(--muted);font-size:12px;font-weight:700}.navlinks span:first-child{color:var(--tesco-blue)}
+header{background:linear-gradient(112deg,var(--tesco-blue-dark),var(--tesco-blue));color:white;padding:27px max(20px,calc((100vw - 1240px)/2)) 30px;position:relative;overflow:hidden}header:after{content:"";position:absolute;right:-70px;top:-150px;width:380px;height:380px;border:54px solid #ffffff0c;border-radius:50%;pointer-events:none}.hero-top{display:flex;justify-content:space-between;gap:14px;align-items:center;flex-wrap:wrap;position:relative;z-index:1}.eyebrow{font-size:11px;text-transform:uppercase;letter-spacing:.12em;font-weight:800;color:#d5e9ff}.pill{display:inline-flex;align-items:center;gap:7px;border:1px solid #ffffff66;border-radius:99px;padding:7px 11px;font-size:11px;font-weight:800;background:#ffffff10}.pill .mini-dot{width:7px;height:7px;border-radius:50%;background:#ffcf5a;display:inline-block}h1{font-size:clamp(27px,4vw,39px);line-height:1.08;margin:12px 0 9px;letter-spacing:-.04em;max-width:850px}header p{margin:0;max-width:800px;color:#e8f2ff;font-size:15px}
+.journey{max-width:1240px;margin:18px auto 0;padding:0 20px}.journey-track{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;background:#fff;border:1px solid var(--line);border-radius:14px;padding:10px;box-shadow:0 3px 12px #18365308}.journey-step{display:flex;align-items:center;gap:9px;padding:9px 10px;border-radius:9px;min-width:0}.journey-step:first-child{background:var(--tesco-blue);color:#fff}.journey-step .num{display:grid;place-items:center;flex:0 0 25px;height:25px;border-radius:50%;background:var(--tesco-pale);color:var(--tesco-blue);font-size:11px;font-weight:900}.journey-step:first-child .num{background:#ffffff24;color:#fff}.journey-step strong{display:block;font-size:12px}.journey-step small{display:block;font-size:10px;opacity:.8;margin-top:1px}
+main{max-width:1240px;margin:20px auto;padding:0 20px 36px}.notice{background:#fff;border:1px solid #f0d6a2;border-left:4px solid #e0a126;border-radius:10px;padding:12px 15px;color:#61450a;margin-bottom:18px;font-size:12px}.notice strong{color:#573800}.grid{display:grid;grid-template-columns:minmax(330px,.95fr) minmax(0,1.4fr);gap:18px;align-items:start}.card{background:var(--white);border:1px solid var(--line);border-radius:15px;padding:19px;box-shadow:0 4px 16px #19395708;min-width:0}.card h2{font-size:17px;margin:0 0 5px;letter-spacing:-.025em;color:var(--navy)}.section-kicker{font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--tesco-blue);font-weight:900;margin-bottom:5px}.sub{font-size:12px;color:var(--muted);margin:0 0 15px}.controls{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0}select,button{border-radius:8px;padding:9px 11px;border:1px solid #c7d5e3;background:white;color:var(--ink);font-size:12px}select{max-width:100%}button{cursor:pointer;font-weight:800;transition:transform .12s,background .12s,border-color .12s}button:active{transform:translateY(1px)}button.primary{background:var(--tesco-blue);color:white;border-color:var(--tesco-blue)}button.primary:hover{background:var(--tesco-blue-dark)}button.secondary{background:#f3f7fb;border-color:#d7e3ef;color:var(--tesco-blue)}button.secondary:hover{background:#e8f1fa}.metrics{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:9px;margin:15px 0}.metric{background:#f7faff;border:1px solid #e0eaf4;border-radius:10px;padding:12px}.metric .n{font-size:25px;font-weight:850;color:var(--tesco-blue);letter-spacing:-.05em}.metric .l{font-size:10px;color:var(--muted);line-height:1.35}.feedback-list{display:flex;flex-direction:column;gap:8px;max-height:440px;overflow:auto;padding-right:3px}.feedback{border:1px solid var(--line);border-radius:10px;padding:11px 12px;background:white;transition:border-color .12s}.feedback:hover{border-color:#8bb5df}.feedback .meta{display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap;font-size:10px;color:var(--muted);margin-bottom:6px}.tag{display:inline-block;background:var(--tesco-pale);color:var(--tesco-blue);padding:3px 7px;border-radius:5px;font-size:10px;font-weight:850}.feedback p{margin:0;font-size:12px;line-height:1.45}.issue{border:1px solid var(--line);border-radius:12px;padding:14px;margin-top:10px;background:#fff}.issue-head{display:flex;justify-content:space-between;gap:12px;align-items:flex-start}.issue h3{margin:0 0 5px;font-size:15px;color:var(--navy)}.issue p{margin:7px 0;font-size:12px;line-height:1.5}.score{font-size:10px;font-weight:850;background:var(--tesco-pale);color:var(--tesco-blue);border-radius:7px;padding:6px 8px;white-space:nowrap}.issue ul{padding-left:18px;margin:8px 0;font-size:12px}.evidence{background:#f4f8fc;border-left:3px solid var(--tesco-blue);padding:9px 11px;border-radius:0 8px 8px 0;font-size:11px;margin-top:8px;line-height:1.55}.actions{display:grid;grid-template-columns:1fr 1fr;gap:11px;margin-top:16px}.action-box{border:1px solid var(--line);border-radius:11px;padding:13px;min-width:0}.action-box h3{font-size:13px;margin:0 0 7px;color:var(--navy)}.action-box p{font-size:12px;margin:0;line-height:1.5}textarea{width:100%;min-height:132px;border:1px solid #c7d5e3;border-radius:8px;padding:10px;font:12px/1.5 ui-monospace,SFMono-Regular,Menlo,monospace;resize:vertical;color:var(--ink)}.small{font-size:11px;color:var(--muted)}.status{display:inline-flex;gap:6px;align-items:center;font-size:11px;font-weight:800;color:var(--green);background:var(--green-pale);border-radius:99px;padding:6px 9px;white-space:nowrap}.dot{height:7px;width:7px;border-radius:50%;background:#239a58;display:inline-block}.decision-principle{margin-top:12px;padding:12px 13px;background:#f7faff;border:1px solid #dfeaf5;border-radius:10px;font-size:11px;color:#40586e}.decision-principle strong{color:var(--tesco-blue)}.panel-heading{display:flex;justify-content:space-between;gap:12px;align-items:start;flex-wrap:wrap}.empty-state{background:#f7faff;border:1px dashed #b9cee2}.footerbar{margin-top:18px;background:#e9eff6;border-radius:10px;padding:12px 14px;color:#4e6479;font-size:11px;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}footer{margin-top:12px;color:var(--muted);font-size:10px;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+@media(max-width:900px){.grid{grid-template-columns:1fr}.journey-step{padding:8px 5px;gap:6px}.journey-step small{display:none}.navlinks{gap:12px}}
+@media(max-width:600px){.utility{font-size:10px}.navlinks{display:none}.journey-track{grid-template-columns:1fr;gap:4px}.journey-step{padding:7px 8px}.journey-step small{display:block}.metrics{grid-template-columns:repeat(3,minmax(0,1fr))}.metric{padding:9px}.metric .n{font-size:22px}.actions{grid-template-columns:1fr}.issue-head{flex-direction:column}.score{white-space:normal}main{padding-left:13px;padding-right:13px}.journey{padding-left:13px;padding-right:13px}.card{padding:15px}}
 </style>
 </head>
 <body>
+<div class="utility"><span>TESCO CUSTOMER EXPERIENCE · CONCEPT WORKSPACE</span><span>Independent prototype · Fictional scenario</span></div>
+<div class="sitebar">
+  <div class="brandlockup"><div class="tesco-word" aria-label="Tesco-inspired visual styling">tesco</div><div class="brand-divider"></div><div><div class="product-name">Customer Signal AI</div><div class="product-caption">Shopper feedback intelligence</div></div></div>
+  <nav class="navlinks" aria-label="Demo sections"><span>Overview</span><span>Feedback signals</span><span>Priorities &amp; actions</span></nav>
+</div>
 <header>
-  <div class="top">
-    <div class="brand">Customer Experience Intelligence · Concept Demo</div>
-    <span class="pill">Fictional Tesco scenario</span>
-  </div>
-  <h1>Customer Signal AI</h1>
-  <p>Turn fragmented shopper feedback into evidence-led priorities and a clear next action for customer care and grocery operations.</p>
+  <div class="hero-top"><span class="eyebrow">Online grocery · Customer operations</span><span class="pill"><span class="mini-dot"></span> CONCEPT DEMO · FICTIONAL DATA</span></div>
+  <h1>From shopper feedback to better grocery experiences</h1>
+  <p>Bring together what shoppers are saying, understand what matters, and help customer care and grocery operations agree the next best action — with evidence and human judgement at every step.</p>
 </header>
+<div class="journey" aria-label="Customer feedback workflow">
+  <div class="journey-track">
+    <div class="journey-step"><span class="num">1</span><div><strong>Listen</strong><small>Bring signals together</small></div></div>
+    <div class="journey-step"><span class="num">2</span><div><strong>Understand</strong><small>Find themes and context</small></div></div>
+    <div class="journey-step"><span class="num">3</span><div><strong>Prioritise</strong><small>Focus on customer impact</small></div></div>
+    <div class="journey-step"><span class="num">4</span><div><strong>Act</strong><small>Assign an owner</small></div></div>
+    <div class="journey-step"><span class="num">5</span><div><strong>Measure</strong><small>Validate the outcome</small></div></div>
+  </div>
+</div>
 <main>
   <div class="notice"><strong>Prototype disclosure:</strong> This is an independent, self-contained demonstration using invented feedback. Analysis is rule-based to simulate an AI workflow; it does not call a live model, connect to Tesco systems, or represent actual Tesco customer data or Sprinklr functionality.</div>
   <div class="grid">
     <section class="card">
-      <h2>1 · Shopper feedback sample</h2>
+      <div class="section-kicker">01 · Listen</div><h2>Shopper feedback sample</h2>
       <p class="sub">A small, fictional dataset across the online grocery journey.</p>
       <div class="metrics">
         <div class="metric"><div class="n" id="totalMetric">18</div><div class="l">Feedback items</div></div>
@@ -86,13 +62,13 @@ footer{margin-top:18px;color:var(--muted);font-size:12px;display:flex;justify-co
     </section>
     <section class="card">
       <div style="display:flex;justify-content:space-between;gap:12px;align-items:start;flex-wrap:wrap">
-        <div><h2>2 · Insight and prioritisation</h2><p class="sub">Identify recurring themes, inspect evidence, then decide what to investigate.</p></div>
+        <div><div class="section-kicker">02–04 · Understand, prioritise &amp; act</div><h2>Insight and prioritisation</h2><p class="sub">Identify recurring themes, inspect evidence, then decide what to investigate.</p></div>
         <span class="status"><span class="dot"></span> Demo workspace</span>
       </div>
       <button class="primary" id="analyzeBtn">Analyse feedback</button>
       <button class="secondary" id="resetBtn">Reset view</button>
       <div id="results" aria-live="polite">
-        <div class="issue" style="background:#f7faf8"><h3>Ready to analyse</h3><p>Select a filter if useful, then run the analysis to see prioritised themes, evidence and suggested actions.</p></div>
+        <div class="issue empty-state"><h3>Ready to analyse</h3><p>Select a filter if useful, then run the analysis to see prioritised themes, evidence and suggested actions.</p></div>
       </div>
       <div class="actions">
         <div class="action-box">
@@ -110,7 +86,7 @@ Decision owner: Relevant operations lead.</textarea>
         </div>
       </div>
       <div class="issue" style="margin-top:14px;background:#fbfdfb">
-        <h3 style="font-size:14px;margin:0 0 6px">3 · How we would validate this with Tesco</h3>
+        <h3 style="font-size:14px;margin:0 0 6px">05 · Validate and measure with Tesco</h3>
         <ul style="margin:0;padding-left:19px;font-size:13px">
           <li>Agree one journey, an accountable business owner and baseline measures.</li>
           <li>Check themes against source records and operational context.</li>
@@ -118,8 +94,10 @@ Decision owner: Relevant operations lead.</textarea>
           <li>Keep consequential customer or operational decisions with a human.</li>
         </ul>
       </div>
+      <div class="decision-principle"><strong>Decision principle:</strong> signal volume is only one input. Validate customer impact, urgency, confidence in the evidence and feasibility before deciding what to do.</div>
     </section>
   </div>
+  <div class="footerbar"><span><strong>Suggested pilot:</strong> one high-value online grocery journey, one accountable owner, agreed baselines.</span><span>Human review before consequential action</span></div>
   <footer>
     <span>Customer Signal AI · Independent concept prototype</span>
     <span>Fictional data · No external connections · Human-in-the-loop design</span>
@@ -180,7 +158,7 @@ function analyse(){
 document.getElementById("themeFilter").addEventListener("change",renderFeedback);
 document.getElementById("channelFilter").addEventListener("change",renderFeedback);
 document.getElementById("analyzeBtn").addEventListener("click",analyse);
-document.getElementById("resetBtn").addEventListener("click",()=>{document.getElementById("themeFilter").value="all";document.getElementById("channelFilter").value="all";renderFeedback();document.getElementById("results").innerHTML='<div class="issue" style="background:#f7faf8"><h3>Ready to analyse</h3><p>Select a filter if useful, then run the analysis to see prioritised themes, evidence and suggested actions.</p></div>';document.getElementById("nextStep").textContent="Start with a focused issue, validate it with the business owner, and agree the evidence needed.";});
+document.getElementById("resetBtn").addEventListener("click",()=>{document.getElementById("themeFilter").value="all";document.getElementById("channelFilter").value="all";renderFeedback();document.getElementById("results").innerHTML='<div class="issue empty-state"><h3>Ready to analyse</h3><p>Select a filter if useful, then run the analysis to see prioritised themes, evidence and suggested actions.</p></div>';document.getElementById("nextStep").textContent="Start with a focused issue, validate it with the business owner, and agree the evidence needed.";});
 document.getElementById("copyBtn").addEventListener("click",async()=>{const box=document.getElementById("handoff");box.select();try{await navigator.clipboard.writeText(box.value);document.getElementById("copyStatus").textContent="Copied. Review before using."; }catch(e){document.execCommand("copy");document.getElementById("copyStatus").textContent="Selected for copying. Review before using."; }});
 renderFeedback();
 </script>
